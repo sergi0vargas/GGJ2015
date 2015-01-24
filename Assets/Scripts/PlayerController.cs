@@ -13,9 +13,13 @@ public class PlayerController : MonoBehaviour {
 
 	public float legBreakingSpeed = -18;
 
+	public Animator anim;
+
 	public enum PlayerState
 	{
-		Normal,
+		IdleNormal,
+		IdleBrokenLegs,
+		Caminando,
 		LegsBroken,
 		Jumping
 	}
@@ -27,7 +31,8 @@ public class PlayerController : MonoBehaviour {
     private float minY = -20; //si baja mas muere (reinicia?)
 
 	void Awake() {
-		State = PlayerState.Normal;
+		State = PlayerState.Caminando;
+		anim = GetComponent<Animator> ();
 	}
 
 	void Update () {
@@ -52,8 +57,15 @@ public class PlayerController : MonoBehaviour {
         }
 
 		if ( Input.GetAxis("Horizontal") !=0 ) {
-
+			if(Input.GetAxis("Horizontal") <0)
+				transform.localScale = new Vector3(-1,1,1);
+			else
+				transform.localScale = new Vector3(1,1,1);
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
+			ChangeState(PlayerState.Caminando);
+		}else{
+
+			ChangeState(PlayerState.IdleNormal);
 		}
 
         if (transform.position.y <= minY)
@@ -80,22 +92,42 @@ public class PlayerController : MonoBehaviour {
 
     void ChangeState(PlayerState state)
     {
-        State = state;
-
         switch (state)
         {
-            case PlayerState.Normal:
+			case PlayerState.IdleNormal:
+				if (State == PlayerState.LegsBroken) {
+				return;
+				}
+				anim.SetFloat("Speed",0);
+				anim.SetFloat("VerticalSpeed",0);
+				break;
+			case PlayerState.IdleBrokenLegs:
+				anim.SetFloat("Speed",0);
+				anim.SetFloat("VerticalSpeed",0);
+				break;
+            case PlayerState.Caminando:
+				if (State == PlayerState.LegsBroken) {
+					return;
+				}
                 CurrentSpeed = WalkingSpeed;
+				anim.SetFloat("Speed",1);
+				anim.SetBool("Arrastandose",false);
+				anim.SetFloat("VerticalSpeed",0);
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
                 audio.Play();
+				anim.SetFloat("Speed",1);
+				anim.SetBool("Arrastandose",true);
                 break;
             case PlayerState.Jumping:
+				anim.SetFloat("VerticalSpeed",1);
                 break;
             default:
                 break;
         }
+
+		State = state;
     }
 
     void OnCollisionEnter2D(Collision2D col)

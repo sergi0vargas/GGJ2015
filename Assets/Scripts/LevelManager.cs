@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour {
             if (tickTimer >= 1)
             {
                 tickTimer -= 1;
-                audio.Play();
+				audio.Play();
             }
         }
 
