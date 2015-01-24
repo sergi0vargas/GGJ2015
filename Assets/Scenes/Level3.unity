@@ -287,6 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 30
   timerTxt: {fileID: 0}
+  Level: 
 --- !u!114 &409283729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -530,11 +531,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
       propertyPath: jumpForce
-      value: 2
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
       propertyPath: speed
-      value: 1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
+      propertyPath: BrokenLegsSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
+      propertyPath: legBreakingSpeed
+      value: -18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
@@ -947,8 +956,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5ec127224dce48d5bbf5f32ac47c642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  jumpForce: 2
+  WalkingSpeed: 10
+  RunningSpeed: 20
+  BrokenLegsSpeed: 2
+  speed: 10
+  jumpForce: 8
+  legBreakingSpeed: -18
   State: 0
 --- !u!58 &1413660773
 CircleCollider2D:

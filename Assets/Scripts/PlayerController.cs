@@ -37,7 +37,20 @@ public class PlayerController : MonoBehaviour {
             Application.LoadLevel(Application.loadedLevel);
         }
 
-		if ( Input.GetAxis("Horizontal")!=0 ) {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Application.LoadLevel(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Application.LoadLevel(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Application.LoadLevel(2);
+        }
+
+		if ( Input.GetAxis("Horizontal") !=0 ) {
 
             transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
 		}
