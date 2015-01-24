@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
+    public const int NUMBER_OF_LEVELS = 3;
+
     public float timer = 30;
     public Text timerTxt;
 
@@ -34,5 +36,20 @@ public class LevelManager : MonoBehaviour {
 
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        var player = GetComponent<PlayerController>();
+        //player.StartCoroutine("Disappear");
+        StartCoroutine("GoToNextLevel");
+    }
 
+    IEnumerator GoToNextLevel()
+    {
+        yield return new WaitForSeconds(1);
+        int level = Application.loadedLevel;
+        if (level <= NUMBER_OF_LEVELS)
+        {
+            Application.LoadLevel(++level);
+        }
+    }
 }

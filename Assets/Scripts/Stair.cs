@@ -4,10 +4,12 @@ using UnityEngine.UI;
 
 public class Stair : MonoBehaviour {
 
-    public bool playerOn = false;
+    public bool playerOnStair = false;
 
-    public float timer = 1.2f;
-    private float realTimer;
+    public float timerMax = 1.5f;
+    public float timerMin = 1f;
+	public PlayerController pc;
+    float realTimer;
     //BOTONES
     private bool btnA = true;
     private bool btnB = false;
@@ -19,51 +21,64 @@ public class Stair : MonoBehaviour {
 
     void Start()
     {
-        realTimer = timer;
+        realTimer = Random.Range(timerMin, timerMax);
+		gameObject.tag = "Escalera";
     }
 
     void Update()
     {
-        if (playerOn)
+        if (playerOnStair)
         {
-            realTimer -= Time.deltaTime;
-            if (realTimer <= 0)
+            TimerThings();
+			if (ButtonCheck()) 
             {
-                FlipFLop();
-                realTimer = timer;
-            }
+				pc.MoveVertical(1);
+			}
+            else
+            {
+				//pc.MoveVertical(-1);
+			}
+        }
+    }
+
+    bool ButtonCheck(){
+		bool check = false;
+		if (btnASprite.enabled) 
+        {
+			if (Input.GetButtonDown("Fire1"))
+            {
+				check = true;
+			}
+		}
+		if (btnBSprite.enabled) 
+        {
+			if (Input.GetButtonDown("Fire2"))
+            {
+				check = true;
+			}
+		}
+		return check;
+    }
+    void TimerThings(){
+
+        realTimer -= Time.deltaTime;
+        if (realTimer <= 0)
+        {
+            FlipFLop();
+            realTimer += 1;
         }
     }
 
     void FlipFLop()
     {
-        if (btnA)
-        {
-            btnASprite.color = new Color(btnASprite.color.r,btnASprite.color.g,btnASprite.color.b, 255);
-            btnA = !btnA;
-        }
-        else
-        {
-            btnASprite.color = new Color(btnASprite.color.r, btnASprite.color.g, btnASprite.color.b, 100);
-            btnA = !btnA;
-        }
-
-        if (btnB)
-        {
-            btnBSprite.color = new Color(btnBSprite.color.r, btnBSprite.color.g, btnBSprite.color.b, 255);
-            btnB = !btnB;
-        }
-        else
-        {
-            btnBSprite.color = new Color(btnBSprite.color.r, btnBSprite.color.g, btnBSprite.color.b, 100);
-            btnB = !btnB;
-        }
+        btnASprite.enabled = !btnASprite.enabled;
+        btnBSprite.enabled = !btnBSprite.enabled;
     }
 
     void EnableBtn()
     {
-        btnASprite.enabled = true;
-        btnBSprite.enabled = true;
+        btnASprite.enabled = btnA;
+        btnBSprite.enabled = btnB;
     }
 
     void DisableBtn()
@@ -76,19 +91,29 @@ public class Stair : MonoBehaviour {
     {
         if (col.gameObject.tag.Equals("Player"))
         {
-            col.gameObject.GetComponent<PlayerController>().EnterStair();
-            playerOn = true;
-            EnableBtn();
+			//EnableStairOutside(col);
         }
     }
-
     void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag.Equals("Player"))
         {
-            playerOn = false;
-            col.gameObject.GetComponent<PlayerController>().ExitStair();
-            DisableBtn();
+			DisableStairOutside(col);
         }
     }
+
+	public void EnableStairOutside(Collider2D col){
+		pc = col.gameObject.GetComponent<PlayerController>();
+		pc.EnterStair();
+		playerOnStair = true;
+		EnableBtn ();
+	}
+	
+	public void DisableStairOutside(Collider2D col){
+		
+		/*playerOnStair = false;
+		pc.ExitStair();
+		pc = null;
+		DisableBtn ();*/
+	}
 }

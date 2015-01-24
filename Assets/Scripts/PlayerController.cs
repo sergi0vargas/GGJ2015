@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour {
     public float WalkingSpeed = 10;
     public float RunningSpeed = 20;
     public float BrokenLegsSpeed = 2;
-    public float StairsSpeed = 5;
+    public float StairsSpeed = 10f;
 
 	public float CurrentSpeed = 10;
     public float jumpForce = 8;
@@ -40,15 +40,15 @@ public class PlayerController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Application.LoadLevel(0);
+            Application.LoadLevel(1);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            Application.LoadLevel(2);
+            Application.LoadLevel(3);
         }
 
 		if ( Input.GetAxis("Horizontal") !=0 ) {
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour {
     public void MoveVertical(int direction)
     {
         float newY = 0;
-        newY = direction * StairsSpeed;
+        newY = direction * StairsSpeed * Time.deltaTime;
         transform.Translate(0, newY, 0);
     }
 
@@ -107,8 +107,6 @@ public class PlayerController : MonoBehaviour {
                 ChangeState(PlayerState.LegsBroken);
 			}
         }
-		Debug.Log(State);
-		Debug.Log(col.relativeVelocity);
     }
 
     IEnumerator Muere()
@@ -119,10 +117,15 @@ public class PlayerController : MonoBehaviour {
         Application.LoadLevel(Application.loadedLevel);
     }
 
+    IEnumerator Disappear()
+    {        
+        yield return new WaitForEndOfFrame();
+    }
+
     public void EnterStair()
     {
         isGrounded = false;
-        rigidbody2D.gravityScale = 0;
+        //rigidbody2D.gravityScale = 0;
     }
     public void ExitStair()
     {

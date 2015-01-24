@@ -130,8 +130,8 @@ GameObject:
   - 114: {fileID: 145207745}
   m_Layer: 0
   m_Name: Escalera
-  m_TagString: Untagged
-  m_Icon: {fileID: -1376725286, guid: 0000000000000000d000000000000000, type: 0}
+  m_TagString: Escalera
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -146,6 +146,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1047220248}
+  - {fileID: 322705292}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!61 &145207744
@@ -159,7 +160,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Size: {x: 3, y: 8}
-  m_Center: {x: 0, y: 0}
+  m_Center: {x: 0, y: 2}
 --- !u!114 &145207745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,10 +173,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2dc6a8d6685a5448a5bb632117dfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerOn: 0
-  timer: 1.20000005
-  btnASprite: {fileID: 1928464079}
-  btnBSprite: {fileID: 1257107481}
+  playerOnStair: 0
+  timerMax: 1.5
+  timerMin: 1
+  pc: {fileID: 0}
+  btnASprite: {fileID: 0}
+  btnBSprite: {fileID: 0}
 --- !u!1 &174484225
 GameObject:
   m_ObjectHideFlags: 0
@@ -252,6 +255,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
+--- !u!1 &322705291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 322705292}
+  - 61: {fileID: 322705294}
+  - 114: {fileID: 322705293}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &322705292
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322705291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 145207743}
+  m_RootOrder: 1
+--- !u!114 &322705293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322705291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e745406527e45746a06eeae6029f655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escalera: {fileID: 0}
+--- !u!61 &322705294
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 322705291}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Size: {x: 3, y: 1}
+  m_Center: {x: 0, y: -3.48000002}
 --- !u!1 &409283727
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timer: 30
   timerTxt: {fileID: 0}
-  Level: 
+  Level: Level1
 --- !u!114 &409283729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -544,6 +599,10 @@ Prefab:
     - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
       propertyPath: legBreakingSpeed
       value: -18
+      objectReference: {fileID: 0}
+    - target: {fileID: 11461824, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
+      propertyPath: StairsSpeed
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6406eb7743ce8c140952ba9b3c097c69, type: 2}
@@ -959,7 +1018,8 @@ MonoBehaviour:
   WalkingSpeed: 10
   RunningSpeed: 20
   BrokenLegsSpeed: 2
-  speed: 10
+  StairsSpeed: 100
+  CurrentSpeed: 10
   jumpForce: 8
   legBreakingSpeed: -18
   State: 0
@@ -1266,11 +1326,35 @@ Prefab:
     - target: {fileID: 11422876, guid: c80da70b580fdb84693d596cb873055d, type: 2}
       propertyPath: btnASprite
       value: 
-      objectReference: {fileID: 1928464079}
+      objectReference: {fileID: 0}
     - target: {fileID: 11422876, guid: c80da70b580fdb84693d596cb873055d, type: 2}
       propertyPath: btnBSprite
       value: 
-      objectReference: {fileID: 1257107481}
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184406, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: m_Size.y
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184406, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: m_Center.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 184404, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: m_TagString
+      value: Escalera
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422876, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: timerMin
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11422876, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: timerMax
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 184404, guid: c80da70b580fdb84693d596cb873055d, type: 2}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c80da70b580fdb84693d596cb873055d, type: 2}
   m_RootGameObject: {fileID: 145207742}
