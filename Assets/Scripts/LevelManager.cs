@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        var player = GetComponent<PlayerController>();
+        //var player = GetComponent<PlayerController>();
         //player.StartCoroutine("Disappear");
         StartCoroutine("GoToNextLevel");
     }
