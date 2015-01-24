@@ -3,15 +3,39 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour {
 
+    public float WalkingSpeed = 10;
+    public float RunningSpeed = 20;
+    public float BrokenLegsSpeed = 2;
 
 	public float speed = 10;
-    public float jumpForce = 10;
+    public float jumpForce = 8;
+
+	public float legBreakingSpeed = -18;
+
+	public enum PlayerState
+	{
+		Normal,
+		LegsBroken,
+		Jumping
+	}
+
+	public PlayerState State;
 
     private bool isGrounded = true;
 
-    private float minY = -20;//si baja mas muere (reinicia?)
+    private float minY = -20; //si baja mas muere (reinicia?)
+
+	void Awake() {
+		State = PlayerState.Normal;
+	}
 
 	void Update () {
+
+        // Reinicia el nivel con "R"
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
 
 		if ( Input.GetAxis("Horizontal")!=0 ) {
 
@@ -26,10 +50,30 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded && State != PlayerState.LegsBroken)
         {
            rigidbody2D.AddForce(Vector2.up * jumpForce *  100);
            isGrounded = false;
+        }
+    }
+
+    void ChangeState(PlayerState state)
+    {
+        State = state;
+
+        switch (state)
+        {
+            case PlayerState.Normal:
+                speed = WalkingSpeed;
+                break;
+            case PlayerState.LegsBroken:
+                speed = BrokenLegsSpeed;
+
+                break;
+            case PlayerState.Jumping:
+                break;
+            default:
+                break;
         }
     }
 
@@ -38,7 +82,12 @@ public class PlayerController : MonoBehaviour {
         if (col.gameObject.tag.Equals("Level"))
         {
             isGrounded = true;
+			if (col.relativeVelocity.y < legBreakingSpeed) {
+                ChangeState(PlayerState.LegsBroken);
+			}
         }
+		Debug.Log(State);
+		Debug.Log(col.relativeVelocity);
     }
 
     IEnumerator Muere()

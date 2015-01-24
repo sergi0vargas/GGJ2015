@@ -7,6 +7,8 @@ public class LevelManager : MonoBehaviour {
     public float timer = 30;
     public Text timerTxt;
 
+	public string Level = "Level1";
+
     void Start()
     {
         timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
@@ -20,7 +22,8 @@ public class LevelManager : MonoBehaviour {
 
         if (timer <= 0)
         {
-            //Perdio();
+			//var player = GameObject.FindGameObjectWithTag("Player");
+			// Muere y reinicia el nivel
         }
 	}
 
@@ -28,5 +31,8 @@ public class LevelManager : MonoBehaviour {
     {
         ///TEMP
         Time.timeScale = 0;
+
     }
+
+
 }

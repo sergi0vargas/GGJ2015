@@ -5,7 +5,6 @@ public class CameraFollow : MonoBehaviour {
 
     private Transform target;
 
-
     public float camSpeed = 2;
     public float distancia = -10;
     private Vector3 targetPos;
