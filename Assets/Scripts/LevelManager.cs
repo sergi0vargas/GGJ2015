@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour {
     public float timer = 30;
     public Text timerTxt;
 
+    float tickTimer = 0;
+
 	public string Level = "Level1";
 
     void Start()
@@ -18,9 +20,18 @@ public class LevelManager : MonoBehaviour {
 
 
 	void Update () {
-
         timer -= Time.deltaTime;
         timerTxt.text = "Time Left: " + timer.ToString("f0");
+
+        if (timer < 6 && timer >= 0)
+        {
+            tickTimer += Time.deltaTime;
+            if (tickTimer >= 1)
+            {
+                tickTimer -= 1;
+                audio.Play();
+            }
+        }
 
         if (timer <= 0)
         {
