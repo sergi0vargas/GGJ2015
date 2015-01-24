@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour {
     public float WalkingSpeed = 10;
     public float RunningSpeed = 20;
     public float BrokenLegsSpeed = 2;
+    public float StairsSpeed = 5;
 
-	public float speed = 10;
+	public float CurrentSpeed = 10;
     public float jumpForce = 8;
 
 	public float legBreakingSpeed = -18;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour {
 
 		if ( Input.GetAxis("Horizontal") !=0 ) {
 
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
+            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
 		}
 
         if (transform.position.y <= minY)
@@ -60,6 +61,13 @@ public class PlayerController : MonoBehaviour {
             StartCoroutine("Muere");
         }
 	}
+
+    public void MoveVertical(int direction)
+    {
+        float newY = 0;
+        newY = direction * StairsSpeed;
+        transform.Translate(0, newY, 0);
+    }
 
     void FixedUpdate()
     {
@@ -77,10 +85,10 @@ public class PlayerController : MonoBehaviour {
         switch (state)
         {
             case PlayerState.Normal:
-                speed = WalkingSpeed;
+                CurrentSpeed = WalkingSpeed;
                 break;
             case PlayerState.LegsBroken:
-                speed = BrokenLegsSpeed;
+                CurrentSpeed = BrokenLegsSpeed;
 
                 break;
             case PlayerState.Jumping:
@@ -107,7 +115,7 @@ public class PlayerController : MonoBehaviour {
     {   //Quita gravedad y frena jugador - espera por la animacion de muerte y luego reinicia el nivel
         rigidbody2D.gravityScale = 0;
         rigidbody2D.velocity = Vector2.zero;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1);
         Application.LoadLevel(Application.loadedLevel);
     }
 
