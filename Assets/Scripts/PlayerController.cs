@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
-
+                audio.Play();
                 break;
             case PlayerState.Jumping:
                 break;
