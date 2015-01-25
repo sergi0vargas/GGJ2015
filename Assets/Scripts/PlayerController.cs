@@ -5,7 +5,7 @@ public class PlayerController : MonoBehaviour {
 
     public float WalkingSpeed = 10;
     public float RunningSpeed = 20;
-    public float BrokenLegsSpeed = 2;
+    public float BrokenLegsSpeed = 1;
     public float StairsSpeed = 10;
     public float StairsDownSpeed = .5f;
 

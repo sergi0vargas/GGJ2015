@@ -55,22 +55,22 @@ TextureImporter:
     - name: arrastre_0
       rect:
         serializedVersion: 2
-        x: 42
+        x: 55
         y: 0
         width: 673
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_1
       rect:
         serializedVersion: 2
         x: 855
-        y: 7
-        width: 638
-        height: 505
-      alignment: 0
-      pivot: {x: .5, y: .5}
+        y: 0
+        width: 653
+        height: 512
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_2
       rect:
@@ -79,8 +79,8 @@ TextureImporter:
         y: 0
         width: 650
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_3
       rect:
@@ -89,28 +89,28 @@ TextureImporter:
         y: 0
         width: 651
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_4
       rect:
         serializedVersion: 2
-        x: 3111
+        x: 3131
         y: 0
         width: 624
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_5
       rect:
         serializedVersion: 2
-        x: 3858
+        x: 3885
         y: 0
         width: 573
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_6
       rect:
@@ -119,8 +119,8 @@ TextureImporter:
         y: 0
         width: 572
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_7
       rect:
@@ -129,18 +129,18 @@ TextureImporter:
         y: 0
         width: 625
         height: 505
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_8
       rect:
         serializedVersion: 2
-        x: 6019
+        x: 6026
         y: 0
         width: 572
         height: 512
-      alignment: 0
-      pivot: {x: .5, y: .5}
+      alignment: 9
+      pivot: {x: .5, y: .699999988}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: arrastre
   userData: 
