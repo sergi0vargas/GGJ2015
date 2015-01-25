@@ -15,17 +15,22 @@ public class LevelManager : MonoBehaviour {
 
     void Start()
     {
-		if(Application.loadedLevel != 0 || Application.loadedLevel != 5 || Application.loadedLevel != 6){
-			timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
-			timer = TimePerLevel[Application.loadedLevel];
-		}
         TimePerLevel[0] = 300;
         TimePerLevel[1] = 30;
         TimePerLevel[2] = 30;
         TimePerLevel[3] = 75;
         TimePerLevel[4] = 90;
-		TimePerLevel[5] = 300;
-		TimePerLevel[6] = 300;
+        TimePerLevel[5] = 300;
+        TimePerLevel[6] = 300;
+
+		if(Application.loadedLevel != 0 || Application.loadedLevel != 5 || Application.loadedLevel != 6){
+			timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
+			timer = TimePerLevel[Application.loadedLevel];
+		}
+        if (Application.loadedLevel == 1)
+        {
+            GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().audio.pitch = 1f;
+        }
     }
 
 

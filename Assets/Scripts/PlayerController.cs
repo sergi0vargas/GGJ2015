@@ -162,6 +162,7 @@ public class PlayerController : MonoBehaviour {
 			if (col.relativeVelocity.y < legBreakingSpeed && Application.loadedLevel != 1) {
                 ChangeState(PlayerState.LegsBroken);
                 anim.SetBool("Arrastandose", true);
+                audio.Play();
             }
             else
             {
