@@ -11,8 +11,9 @@ GameObject:
   - 50: {fileID: 5061824}
   - 58: {fileID: 5861824}
   - 114: {fileID: 11461824}
-  - 212: {fileID: 21271900}
   - 95: {fileID: 9571900}
+  - 212: {fileID: 21246988}
+  - 82: {fileID: 8246988}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -27,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161824}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.52999997, y: -3.91000009, z: 0}
+  m_LocalPosition: {x: -1.62, y: 1.92999995, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -58,6 +59,64 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 1
   m_Center: {x: 5.96046448e-08, y: 0}
+--- !u!82 &8246988
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 161824}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: 9804b4d30250f8f4d8bcfc1019266266, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!95 &9571900
 Animator:
   serializedVersion: 3
@@ -70,7 +129,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: a3ad02043225b8748a19507d1c4a4617, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11461824
@@ -88,12 +147,13 @@ MonoBehaviour:
   RunningSpeed: 20
   BrokenLegsSpeed: 2
   StairsSpeed: 10
+  StairsDownSpeed: .5
   CurrentSpeed: 10
   jumpForce: 8
   legBreakingSpeed: -18
   anim: {fileID: 0}
   State: 0
---- !u!212 &21271900
+--- !u!212 &21246988
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -112,8 +172,8 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 23
-  m_Sprite: {fileID: 21300000, guid: 60113ab3427c17a44b7c3731cbba71b5, type: 3}
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 21300004, guid: 6f642f26888c5b543a2436a400f364ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

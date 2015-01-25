@@ -74,7 +74,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -4.28999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484404}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Size: {x: 3, y: .400000006}
-  m_Center: {x: 0, y: -4}
+  m_Center: {x: 0, y: 0}
 --- !u!61 &6184406
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -138,8 +138,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Size: {x: 3, y: 7}
-  m_Center: {x: 0, y: 1.38}
+  m_Size: {x: 3, y: 6}
+  m_Center: {x: 0, y: .400000006}
 --- !u!68 &6891814
 EdgeCollider2D:
   m_ObjectHideFlags: 1
@@ -167,11 +167,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerOnStair: 0
   timerMax: 1.5
-  timerMin: 1
+  timerMin: .300000012
   pc: {fileID: 0}
   btnASprite: {fileID: 0}
   btnBSprite: {fileID: 0}
   pisoSuperior: {fileID: 191814}
+  stairsDownDelay: 3
 --- !u!114 &11455790
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -18,12 +18,15 @@ public class Stair : MonoBehaviour {
     public Image btnBSprite;
     public GameObject pisoSuperior;
 
+    public float stairsDownDelay = 3f;
+    private float stairsCurrentDownDelay;
     //FALTA RANDOM QUE ACTIVE O DESACTIVE AMBOS BOTONES AL TIEMPO?
 
     void Start()
     {
         realTimer = Random.Range(timerMin, timerMax);
 		gameObject.tag = "Escalera";
+        stairsCurrentDownDelay = stairsDownDelay;
     }
 
     void Update()
@@ -37,7 +40,8 @@ public class Stair : MonoBehaviour {
 			}
             else
             {
-				//pc.MoveVertical(-1);
+                if (stairsCurrentDownDelay <= 0)
+                    pc.MoveVertical(-1);
 			}
         }
     }
@@ -61,13 +65,14 @@ public class Stair : MonoBehaviour {
 		return check;
     }
     void TimerThings(){
-
+        stairsCurrentDownDelay -= Time.deltaTime;
         realTimer -= Time.deltaTime;
         if (realTimer <= 0)
         {
             FlipFLop();
-            realTimer += 1;
+            realTimer = Random.Range(timerMin, timerMax);
         }
+
     }
 
     void FlipFLop()
@@ -105,9 +110,11 @@ public class Stair : MonoBehaviour {
 
 	public void EnableStairOutside(Collider2D col){
 		pc = col.gameObject.GetComponent<PlayerController>();
+        stairsCurrentDownDelay = stairsDownDelay;
 		pc.EnterStair();
 		playerOnStair = true;
 		EnableBtn ();
+        pc.anim.SetBool("inStairs", true);
 	}
 	
 	public void DisableStairOutside(Collider2D col){
@@ -116,6 +123,7 @@ public class Stair : MonoBehaviour {
 		playerOnStair = false;
         if (pc != null)
         {
+            pc.anim.SetBool("inStairs", false);
             pc.ExitStair();
             pc = null;
         }

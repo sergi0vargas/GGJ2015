@@ -6,7 +6,8 @@ public class PlayerController : MonoBehaviour {
     public float WalkingSpeed = 10;
     public float RunningSpeed = 20;
     public float BrokenLegsSpeed = 2;
-    public float StairsSpeed = 10f;
+    public float StairsSpeed = 10;
+    public float StairsDownSpeed = .5f;
 
 	public float CurrentSpeed = 10;
     public float jumpForce = 8;
@@ -37,6 +38,47 @@ public class PlayerController : MonoBehaviour {
 
 	void Update () {
 
+        InputManager();
+
+		if ( Input.GetAxis("Horizontal") !=0 ) {
+			if(Input.GetAxis("Horizontal") <0)
+				transform.localScale = new Vector3(-1,1,1);
+			else
+				transform.localScale = new Vector3(1,1,1);
+            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
+			if(State != PlayerState.Jumping )
+                ChangeState(PlayerState.Caminando);
+
+            anim.SetFloat("Speed", 1);
+		}else{
+            if (State != PlayerState.Jumping)
+			    ChangeState(PlayerState.IdleNormal);
+            anim.SetFloat("Speed", 0);
+		}
+
+        if (transform.position.y <= minY)
+        {
+            StartCoroutine("Muere");
+        }
+	}
+
+    public void MoveVertical(int direction)
+    {
+        float newY = 0;
+        newY = direction * StairsSpeed * Time.deltaTime;
+        if(direction == 1){
+            newY = direction * StairsSpeed * Time.deltaTime;
+            transform.Translate(0, newY, 0);
+        }
+        else
+        {
+            newY = direction * StairsDownSpeed * Time.deltaTime;
+            transform.Translate(0, newY, 0);
+        }
+    }
+
+    void InputManager()
+    {
         // Reinicia el nivel con "R"
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -55,36 +97,12 @@ public class PlayerController : MonoBehaviour {
         {
             Application.LoadLevel(3);
         }
-
-		if ( Input.GetAxis("Horizontal") !=0 ) {
-			if(Input.GetAxis("Horizontal") <0)
-				transform.localScale = new Vector3(-1,1,1);
-			else
-				transform.localScale = new Vector3(1,1,1);
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
-			ChangeState(PlayerState.Caminando);
-		}else{
-
-			ChangeState(PlayerState.IdleNormal);
-		}
-
-        if (transform.position.y <= minY)
-        {
-            StartCoroutine("Muere");
-        }
-	}
-
-    public void MoveVertical(int direction)
-    {
-        float newY = 0;
-        newY = direction * StairsSpeed * Time.deltaTime;
-        transform.Translate(0, newY, 0);
     }
-
     void FixedUpdate()
     {
         if (Input.GetButtonDown("Jump") && isGrounded && State != PlayerState.LegsBroken)
         {
+           ChangeState(PlayerState.Jumping);
            rigidbody2D.AddForce(Vector2.up * jumpForce *  100);
            isGrounded = false;
         }
@@ -94,34 +112,25 @@ public class PlayerController : MonoBehaviour {
     {
         switch (state)
         {
+            case PlayerState.IdleBrokenLegs:
+                break;
 			case PlayerState.IdleNormal:
 				if (State == PlayerState.LegsBroken) {
 				return;
 				}
-				anim.SetFloat("Speed",0);
-				anim.SetFloat("VerticalSpeed",0);
-				break;
-			case PlayerState.IdleBrokenLegs:
-				anim.SetFloat("Speed",0);
-				anim.SetFloat("VerticalSpeed",0);
 				break;
             case PlayerState.Caminando:
 				if (State == PlayerState.LegsBroken) {
 					return;
 				}
                 CurrentSpeed = WalkingSpeed;
-				anim.SetFloat("Speed",1);
-				anim.SetBool("Arrastandose",false);
-				anim.SetFloat("VerticalSpeed",0);
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
                 audio.Play();
-				anim.SetFloat("Speed",1);
-				anim.SetBool("Arrastandose",true);
                 break;
             case PlayerState.Jumping:
-				anim.SetFloat("VerticalSpeed",1);
+                anim.SetBool("Saltando", true);
                 break;
             default:
                 break;
@@ -137,7 +146,14 @@ public class PlayerController : MonoBehaviour {
             isGrounded = true;
 			if (col.relativeVelocity.y < legBreakingSpeed) {
                 ChangeState(PlayerState.LegsBroken);
-			}
+                anim.SetBool("Arrastandose", true);
+            }
+            else
+            {
+                ChangeState(PlayerState.IdleNormal);
+                anim.SetBool("Arrastandose", false);
+            }
+            anim.SetBool("Saltando", false);
         }
     }
 
@@ -157,7 +173,7 @@ public class PlayerController : MonoBehaviour {
     public void EnterStair()
     {
         isGrounded = false;
-        //rigidbody2D.gravityScale = 0;
+        rigidbody2D.gravityScale = 0;
     }
     public void ExitStair()
     {

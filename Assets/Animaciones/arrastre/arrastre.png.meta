@@ -46,7 +46,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 800
+  spritePixelsToUnits: 300
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -56,91 +56,91 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 68
-        width: 637
-        height: 350
+        y: 0
+        width: 673
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_1
       rect:
         serializedVersion: 2
-        x: 862
-        y: 68
-        width: 637
-        height: 350
+        x: 855
+        y: 7
+        width: 638
+        height: 505
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_2
       rect:
         serializedVersion: 2
-        x: 1609
-        y: 88
+        x: 1602
+        y: 0
         width: 650
-        height: 343
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_3
       rect:
         serializedVersion: 2
         x: 2376
-        y: 88
+        y: 0
         width: 651
-        height: 343
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_4
       rect:
         serializedVersion: 2
-        x: 3131
-        y: 88
+        x: 3111
+        y: 0
         width: 624
-        height: 349
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_5
       rect:
         serializedVersion: 2
-        x: 3878
-        y: 81
+        x: 3858
+        y: 0
         width: 573
-        height: 343
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_6
       rect:
         serializedVersion: 2
-        x: 4535
-        y: 88
+        x: 4528
+        y: 0
         width: 572
-        height: 343
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_7
       rect:
         serializedVersion: 2
-        x: 5250
-        y: 75
+        x: 5257
+        y: 0
         width: 625
-        height: 349
+        height: 505
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: arrastre_8
       rect:
         serializedVersion: 2
-        x: 6005
-        y: 62
+        x: 6019
+        y: 0
         width: 572
-        height: 343
+        height: 512
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: arrastre
   userData: 

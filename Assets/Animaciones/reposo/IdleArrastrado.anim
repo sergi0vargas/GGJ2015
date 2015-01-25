@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: escalando
+  m_Name: IdleArrastrado
   serializedVersion: 4
   m_AnimationType: 2
   m_Compressed: 0
@@ -18,13 +18,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300002, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
+      value: {fileID: 21300002, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
     - time: .333333343
-      value: {fileID: 21300004, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
+      value: {fileID: 21300004, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
     - time: .666666687
-      value: {fileID: 21300002, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
-    - time: 1
-      value: {fileID: 21300004, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
+      value: {fileID: 21300006, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -43,14 +41,13 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300002, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
-    - {fileID: 21300004, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
-    - {fileID: 21300002, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
-    - {fileID: 21300004, guid: 0cba5e66e35d5774d8b44d782d30cc7f, type: 3}
+    - {fileID: 21300002, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
+    - {fileID: 21300004, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
+    - {fileID: 21300006, guid: 64997ae1c5fb05a4c83fc2fe63628de8, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
-    m_StopTime: 1.33333337
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
