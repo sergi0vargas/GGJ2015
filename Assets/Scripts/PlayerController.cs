@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour {
 	void Awake() {
 		State = PlayerState.Caminando;
 		anim = GetComponent<Animator> ();
+
+        if (Application.loadedLevel == 3)
+        {
+            ChangeState(PlayerState.LegsBroken);
+            anim.SetBool("Arrastandose", true);
+        }
 	}
 
 	void Update () {
