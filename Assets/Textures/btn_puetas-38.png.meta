@@ -2,14 +2,14 @@ fileFormatVersion: 2
 guid: 58afe133f49d74941be3326af9d72e17
 TextureImporter:
   fileIDToRecycleName:
-    21300000: btn_puetas-38_0
-    21300002: btn_puetas-38_1
-    21300004: btn_puetas-38_2
+    21300000: Puerta1
+    21300002: Puerta2
+    21300004: Humo1
     21300006: btn_puetas-38_3
-    21300008: btn_puetas-38_4
-    21300010: btn_puetas-38_5
-    21300012: btn_puetas-38_6
-    21300014: btn_puetas-38_7
+    21300008: Humo2
+    21300010: Flecha_Baja
+    21300012: Flecha_Sube
+    21300014: Humo3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,7 +51,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: btn_puetas-38_0
+    - name: Puerta1
       rect:
         serializedVersion: 2
         x: 139
@@ -59,19 +59,19 @@ TextureImporter:
         width: 644
         height: 898
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_1
+    - name: Puerta2
       rect:
         serializedVersion: 2
-        x: 1092
+        x: 1097
         y: 931
         width: 605
         height: 843
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_2
+    - name: Humo1
       rect:
         serializedVersion: 2
         x: 3189
@@ -79,7 +79,7 @@ TextureImporter:
         width: 567
         height: 289
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: btn_puetas-38_3
       rect:
@@ -89,9 +89,9 @@ TextureImporter:
         width: 617
         height: 382
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_4
+    - name: Humo2
       rect:
         serializedVersion: 2
         x: 3201
@@ -99,9 +99,9 @@ TextureImporter:
         width: 586
         height: 301
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_5
+    - name: Flecha_Baja
       rect:
         serializedVersion: 2
         x: 154
@@ -109,19 +109,19 @@ TextureImporter:
         width: 594
         height: 659
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_6
+    - name: Flecha_Sube
       rect:
         serializedVersion: 2
-        x: 994
-        y: 162
+        x: 999
+        y: 167
         width: 578
         height: 476
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: btn_puetas-38_7
+    - name: Humo3
       rect:
         serializedVersion: 2
         x: 3182
@@ -129,7 +129,7 @@ TextureImporter:
         width: 582
         height: 300
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

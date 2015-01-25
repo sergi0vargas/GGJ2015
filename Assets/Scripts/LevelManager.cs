@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
-    public const int NUMBER_OF_LEVELS = 4;
+    public const int NUMBER_OF_LEVELS = 5;
 
     public int[] TimePerLevel = new int[NUMBER_OF_LEVELS + 1];
 
@@ -12,8 +12,6 @@ public class LevelManager : MonoBehaviour {
     public Text timerTxt;
 
     float tickTimer = 0;
-
-	public string Level = "Level1";
 
     void Start()
     {
@@ -23,6 +21,7 @@ public class LevelManager : MonoBehaviour {
         TimePerLevel[2] = 30;
         TimePerLevel[3] = 75;
         TimePerLevel[4] = 90;
+		TimePerLevel[5] = 300;
 
         timer = TimePerLevel[Application.loadedLevel];
     }
