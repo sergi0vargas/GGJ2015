@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
-    public const int NUMBER_OF_LEVELS = 6;
+    public const int NUMBER_OF_LEVELS = 7;
 
     int[] TimePerLevel = new int[NUMBER_OF_LEVELS];
 
@@ -15,19 +15,17 @@ public class LevelManager : MonoBehaviour {
 
     void Start()
     {
-		try{
+		if(Application.loadedLevel != 0 || Application.loadedLevel != 5 || Application.loadedLevel != 6){
 			timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
 			timer = TimePerLevel[Application.loadedLevel];
-		}catch(System.Exception e){
-			Debug.LogWarning("NO EXISTE EL TXT DEL TIMER");
-				}
+		}
         TimePerLevel[0] = 300;
         TimePerLevel[1] = 30;
         TimePerLevel[2] = 30;
         TimePerLevel[3] = 75;
         TimePerLevel[4] = 90;
 		TimePerLevel[5] = 300;
-
+		TimePerLevel[6] = 300;
     }
 
 

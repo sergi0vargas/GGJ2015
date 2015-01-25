@@ -278,17 +278,15 @@ GameObject:
 --- !u!114 &1653146638
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11468878, guid: 244c3adfa2e741e42bec5f62e7f15d97,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1653146637}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e46ff6ee267fb645800e06473c803d5, type: 3}
+  m_Script: {fileID: 11500000, guid: d156e4e2955980b4eb536fa7ec7a9522, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 30
-  timerTxt: {fileID: 0}
+  timer: 0
 --- !u!81 &1653146639
 AudioListener:
   m_ObjectHideFlags: 0
