@@ -40,6 +40,11 @@ public class PlayerController : MonoBehaviour {
             ChangeState(PlayerState.LegsBroken);
             anim.SetBool("Arrastandose", true);
         }
+		if (Application.loadedLevel == 4)
+		{
+			ChangeState(PlayerState.LegsBroken);
+			anim.SetBool("Arrastandose", true);
+		}
 	}
 
 	void Update () {
