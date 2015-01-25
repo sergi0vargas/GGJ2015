@@ -15,7 +15,8 @@ public class Stair : MonoBehaviour {
     private bool btnB = false;
     //Sprite o image
     public Image btnASprite;
-    public Image btnBSprite;
+	public Image btnBSprite;
+	public Text txtSprites;
     public GameObject pisoSuperior;
 
     public float stairsDownDelay = 3f;
@@ -114,6 +115,7 @@ public class Stair : MonoBehaviour {
 		pc.EnterStair();
 		playerOnStair = true;
 		EnableBtn ();
+		txtSprites.enabled = true;
         pc.anim.SetBool("inStairs", true);
 	}
 	
@@ -121,6 +123,7 @@ public class Stair : MonoBehaviour {
 
         pisoSuperior.collider2D.isTrigger = false;
 		playerOnStair = false;
+		txtSprites.enabled = false;
         if (pc != null)
         {
             pc.anim.SetBool("inStairs", false);
