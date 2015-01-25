@@ -15,7 +15,12 @@ public class LevelManager : MonoBehaviour {
 
     void Start()
     {
-        timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
+		try{
+			timerTxt = GameObject.FindGameObjectWithTag("Timer").GetComponent<Text>();
+			timer = TimePerLevel[Application.loadedLevel];
+		}catch(System.Exception e){
+			Debug.LogWarning("NO EXISTE EL TXT DEL TIMER");
+				}
         TimePerLevel[0] = 300;
         TimePerLevel[1] = 30;
         TimePerLevel[2] = 30;
@@ -23,12 +28,12 @@ public class LevelManager : MonoBehaviour {
         TimePerLevel[4] = 90;
 		TimePerLevel[5] = 300;
 
-        timer = TimePerLevel[Application.loadedLevel];
     }
 
 
 	void Update () {
         timer -= Time.deltaTime;
+		if(timerTxt != null)
         timerTxt.text = "Time Left: " + timer.ToString("f0");
 
         if (timer < 6 && timer >= 0)

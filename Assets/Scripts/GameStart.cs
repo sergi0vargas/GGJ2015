@@ -12,7 +12,7 @@ public class GameStart : MonoBehaviour {
 	void Update () {
         if (Input.anyKeyDown)
         {
-            Application.LoadLevel(1);
+            Application.LoadLevel(6);
         }
 	}
 }
