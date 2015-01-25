@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour {
 	void Awake() {
 		State = PlayerState.Caminando;
 		anim = GetComponent<Animator> ();
+
+        if (Application.loadedLevel == 3)
+        {
+            ChangeState(PlayerState.LegsBroken);
+            anim.SetBool("Arrastandose", true);
+        }
 	}
 
 	void Update () {
@@ -127,7 +133,6 @@ public class PlayerController : MonoBehaviour {
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
-                audio.Play();
                 break;
             case PlayerState.Jumping:
                 anim.SetBool("Saltando", true);
@@ -144,7 +149,7 @@ public class PlayerController : MonoBehaviour {
         if (col.gameObject.tag.Equals("Level"))
         {
             isGrounded = true;
-			if (col.relativeVelocity.y < legBreakingSpeed) {
+			if (col.relativeVelocity.y < legBreakingSpeed && Application.loadedLevel != 1) {
                 ChangeState(PlayerState.LegsBroken);
                 anim.SetBool("Arrastandose", true);
             }

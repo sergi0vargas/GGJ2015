@@ -21,7 +21,7 @@ public class LevelManager : MonoBehaviour {
         TimePerLevel[0] = 300;
         TimePerLevel[1] = 30;
         TimePerLevel[2] = 30;
-        TimePerLevel[3] = 90;
+        TimePerLevel[3] = 75;
         TimePerLevel[4] = 90;
 
         timer = TimePerLevel[Application.loadedLevel];

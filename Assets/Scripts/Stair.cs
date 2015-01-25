@@ -124,6 +124,7 @@ public class Stair : MonoBehaviour {
         if (pc != null)
         {
             pc.anim.SetBool("inStairs", false);
+            pc.anim.SetBool("Arrastandose", true);
             pc.ExitStair();
             pc = null;
         }
