@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
-    public const int NUMBER_OF_LEVELS = 5;
+    public const int NUMBER_OF_LEVELS = 6;
 
-    public int[] TimePerLevel = new int[NUMBER_OF_LEVELS + 1];
+    int[] TimePerLevel = new int[NUMBER_OF_LEVELS];
 
     public float timer = 30;
     public Text timerTxt;
@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour {
             if (tickTimer >= 1)
             {
                 tickTimer -= 1;
-				audio.Play();
+				//audio.Play();
             }
         }
 

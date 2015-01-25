@@ -149,10 +149,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e46ff6ee267fb645800e06473c803d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimePerLevel: 0000000000000000000000000000000000000000
+  TimePerLevel: 000000000000000000000000000000000000000000000000
   timer: 30
   timerTxt: {fileID: 0}
-  Level: Level1
 --- !u!114 &11476712
 MonoBehaviour:
   m_ObjectHideFlags: 1
