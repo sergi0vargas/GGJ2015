@@ -149,7 +149,7 @@ public class PlayerController : MonoBehaviour {
         if (col.gameObject.tag.Equals("Level"))
         {
             isGrounded = true;
-			if (col.relativeVelocity.y < legBreakingSpeed) {
+			if (col.relativeVelocity.y < legBreakingSpeed && Application.loadedLevel != 1) {
                 ChangeState(PlayerState.LegsBroken);
                 anim.SetBool("Arrastandose", true);
             }
