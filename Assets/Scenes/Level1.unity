@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 408605113}
-  camSpeed: 1
+  camSpeed: 2
   distancia: -10
   targetPos: {x: 0, y: 0, z: 0}
 --- !u!81 &230096597
@@ -506,7 +506,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Priority: 128
   DopplerLevel: 1
