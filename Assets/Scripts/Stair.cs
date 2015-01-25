@@ -16,6 +16,7 @@ public class Stair : MonoBehaviour {
     //Sprite o image
     public Image btnASprite;
     public Image btnBSprite;
+    public GameObject pisoSuperior;
 
     //FALTA RANDOM QUE ACTIVE O DESACTIVE AMBOS BOTONES AL TIEMPO?
 
@@ -110,10 +111,14 @@ public class Stair : MonoBehaviour {
 	}
 	
 	public void DisableStairOutside(Collider2D col){
-		
-		/*playerOnStair = false;
-		pc.ExitStair();
-		pc = null;
-		DisableBtn ();*/
+
+        pisoSuperior.collider2D.isTrigger = false;
+		playerOnStair = false;
+        if (pc != null)
+        {
+            pc.ExitStair();
+            pc = null;
+        }
+		DisableBtn ();
 	}
 }
