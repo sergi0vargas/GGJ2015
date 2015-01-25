@@ -108,6 +108,10 @@ public class PlayerController : MonoBehaviour {
         {
             Application.LoadLevel(3);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Application.LoadLevel(4);
+        }
     }
     void FixedUpdate()
     {
@@ -138,6 +142,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
+                GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().audio.pitch = 0.8f;
                 break;
             case PlayerState.Jumping:
                 anim.SetBool("Saltando", true);

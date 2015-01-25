@@ -11,6 +11,7 @@ public class TakeWeelChair : MonoBehaviour {
 			PlayerController pc = col.gameObject.GetComponent<PlayerController>();
 			pc.anim.SetBool("enSilla",true);
 			pc.CurrentSpeed = pc.RunningSpeed;
+            GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().audio.pitch = 1.1f;
 			Destroy(this.gameObject);
 				}
 
