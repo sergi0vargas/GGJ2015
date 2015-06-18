@@ -20,7 +20,7 @@ public class Push : MonoBehaviour {
         }
         timer = 0;
         PlayerController pc = col.gameObject.GetComponent<PlayerController>();
-        pc.rigidbody2D.AddForce(Vector2.up * UpForce);
+        pc.GetComponent<Rigidbody2D>().AddForce(Vector2.up * UpForce);
         Debug.Log("UP");
     }
 }

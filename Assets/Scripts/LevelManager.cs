@@ -29,7 +29,8 @@ public class LevelManager : MonoBehaviour {
 		}
         if (Application.loadedLevel == 1)
         {
-            GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().audio.pitch = 1f;
+            if (GameObject.FindGameObjectWithTag("LevelMusic") != null)
+                GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().GetComponent<AudioSource>().pitch = 1f;
         }
     }
 

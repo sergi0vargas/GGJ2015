@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour {
+
 
     public float WalkingSpeed = 10;
     public float RunningSpeed = 20;
@@ -50,28 +51,75 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 
         InputManager();
-
-		if ( Input.GetAxis("Horizontal") !=0 ) {
-			if(Input.GetAxis("Horizontal") <0)
-				transform.localScale = new Vector3(-1,1,1);
-			else
-				transform.localScale = new Vector3(1,1,1);
-            transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
-			if(State != PlayerState.Jumping )
-                ChangeState(PlayerState.Caminando);
-
-            anim.SetFloat("Speed", 1);
-		}else{
-            if (State != PlayerState.Jumping)
-			    ChangeState(PlayerState.IdleNormal);
-            anim.SetFloat("Speed", 0);
-		}
+        
+        #if !UNITY_IOS && !UNITY_ANDROID && !UNITY_WINRT
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+            MovementManager();
+            }
+            else
+            {
+                if (State != PlayerState.Jumping)
+                    ChangeState(PlayerState.IdleNormal);
+                anim.SetFloat("Speed", 0);
+            }
+        #else
+            if (CrossPlatformInputManager.GetAxis("Horizontal") != 0)
+                {
+                    MovementManager(CrossPlatformInputManager.GetAxis("Horizontal"));
+                }
+            else
+                {
+                    if (State != PlayerState.Jumping)
+                        ChangeState(PlayerState.IdleNormal);
+                    anim.SetFloat("Speed", 0);
+                }
+        #endif
 
         if (transform.position.y <= minY)
         {
             StartCoroutine("Muere");
         }
 	}
+
+    void MovementManager()
+    {
+        if (Input.GetAxis("Horizontal") < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
+        else
+            transform.localScale = new Vector3(1, 1, 1);
+        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * CurrentSpeed * Time.deltaTime);
+        if (State != PlayerState.Jumping)
+            ChangeState(PlayerState.Caminando);
+
+        anim.SetFloat("Speed", 1);
+    }
+
+    public void MovementManager(float x)
+    {
+        if (x != 0 && (x>0 || x<0))
+        {
+            if (x < 0)
+                transform.localScale = new Vector3(-1, 1, 1);
+            else
+                transform.localScale = new Vector3(1, 1, 1);
+            transform.Translate(Vector3.right * x * CurrentSpeed * Time.deltaTime);
+            if (State != PlayerState.Jumping)
+                ChangeState(PlayerState.Caminando);
+
+            anim.SetFloat("Speed", 1);
+        }
+    }
+
+    void JumpingManager()
+    {
+        if (isGrounded && State != PlayerState.LegsBroken)
+        {
+            ChangeState(PlayerState.Jumping);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce * 100);
+            isGrounded = false;
+        }
+    }
 
     public void MoveVertical(int direction)
     {
@@ -115,12 +163,13 @@ public class PlayerController : MonoBehaviour {
     }
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded && State != PlayerState.LegsBroken)
-        {
-           ChangeState(PlayerState.Jumping);
-           rigidbody2D.AddForce(Vector2.up * jumpForce *  100);
-           isGrounded = false;
-        }
+        #if UNITY_IOS || UNITY_ANDROID || UNITY_WINRT
+            if(CrossPlatformInputManager.GetButtonDown("Jump"))
+                JumpingManager();
+        #else
+        if(Input.GetButtonDown("Jump"))   
+            JumpingManager();
+        #endif
     }
 
     void ChangeState(PlayerState state)
@@ -142,7 +191,7 @@ public class PlayerController : MonoBehaviour {
                 break;
             case PlayerState.LegsBroken:
                 CurrentSpeed = BrokenLegsSpeed;
-                GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().audio.pitch = 0.8f;
+                GameObject.FindGameObjectWithTag("LevelMusic").GetComponent<AudioSource>().GetComponent<AudioSource>().pitch = 0.8f;
                 break;
             case PlayerState.Jumping:
                 anim.SetBool("Saltando", true);
@@ -162,7 +211,7 @@ public class PlayerController : MonoBehaviour {
 			if (col.relativeVelocity.y < legBreakingSpeed && Application.loadedLevel != 1) {
                 ChangeState(PlayerState.LegsBroken);
                 anim.SetBool("Arrastandose", true);
-                audio.Play();
+                GetComponent<AudioSource>().Play();
             }
             else
             {
@@ -175,8 +224,8 @@ public class PlayerController : MonoBehaviour {
 
     IEnumerator Muere()
     {   //Quita gravedad y frena jugador - espera por la animacion de muerte y luego reinicia el nivel
-        rigidbody2D.gravityScale = 0;
-        rigidbody2D.velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         yield return new WaitForSeconds(1);
         Application.LoadLevel(Application.loadedLevel);
     }
@@ -189,11 +238,11 @@ public class PlayerController : MonoBehaviour {
     public void EnterStair()
     {
         isGrounded = false;
-        rigidbody2D.gravityScale = 0;
+        GetComponent<Rigidbody2D>().gravityScale = 0;
     }
     public void ExitStair()
     {
         isGrounded = true;
-        rigidbody2D.gravityScale = 1;
+        GetComponent<Rigidbody2D>().gravityScale = 1;
     }
 }

@@ -121,7 +121,7 @@ public class Stair : MonoBehaviour {
 	
 	public void DisableStairOutside(Collider2D col){
 
-        pisoSuperior.collider2D.isTrigger = false;
+        pisoSuperior.GetComponent<Collider2D>().isTrigger = false;
 		playerOnStair = false;
 		txtSprites.enabled = false;
         if (pc != null)
