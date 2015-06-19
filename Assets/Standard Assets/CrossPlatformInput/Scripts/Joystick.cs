@@ -39,7 +39,6 @@ public class Joystick : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, I
 		if (m_UseX)
 		{
 			m_HorizontalVirtualAxis.Update(-delta.x);
-            Debug.Log(Input.GetAxis(horizontalAxisName));
 		}
 
 		if (m_UseY)
